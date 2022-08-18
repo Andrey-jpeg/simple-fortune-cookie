@@ -2,6 +2,7 @@ version: '3'
 services:
 
     backend:
+        container_name: backend_container
         build: ./backend
         ports:
             - 9000:9000
@@ -9,6 +10,7 @@ services:
             - default
 
     frontend:
+        container_name: frontend_container
         depends_on:
             - "backend"
         build: ./frontend
