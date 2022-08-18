@@ -11,6 +11,7 @@ env:
   docker_password: ${{ secrets.DOCKER_PASSWORD }}
   GIT_COMMIT: ${{ github.sha }}      
 jobs:
+
   Clone-down:
     runs-on: ubuntu-latest
     steps:
@@ -115,7 +116,7 @@ jobs:
   System-test-dev:
     runs-on: dev-self-hosted
     needs: [Docker-image-dev]
-    with:
+    steps:
       - name: Download Repo
         uses: actions/download-artifact@v2
         with: 
@@ -125,7 +126,7 @@ jobs:
         run: docker-compose up -d
       - name: Test
         run: docker run --network container:backend appropriate/curl -s --retry 10 --retry-connrefused http://localhost:8080/  
-              
+
   Deploy-dev:
     runs-on: dev-self-hosted
     needs: [System-test-dev]
