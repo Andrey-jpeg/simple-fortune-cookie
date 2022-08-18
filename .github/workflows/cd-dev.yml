@@ -108,7 +108,7 @@ jobs:
           push: true
           tags: ${{ secrets.DOCKER_USERNAME }}/frontend:dev  
 
-  Deploy-latest:
+  Deploy-dev:
     runs-on: dev-self-hosted
     needs: [Docker-image-dev]
     steps:
