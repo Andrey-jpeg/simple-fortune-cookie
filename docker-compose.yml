@@ -1,0 +1,23 @@
+version: '3'
+services:
+
+    backend:
+        build: ./backend
+        ports:
+            - 9000:9000
+        networks:
+            - default
+
+    frontend:
+        depends_on:
+            - "backend"
+        build: ./frontend
+        ports:
+            - 8080:8080
+        networks:
+            - default
+        restart: always
+
+
+networks:
+  default:
