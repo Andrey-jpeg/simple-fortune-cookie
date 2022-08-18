@@ -117,11 +117,8 @@ jobs:
     runs-on: dev-self-hosted
     needs: [Docker-image-dev]
     steps:
-      - name: Download Repo
-        uses: actions/download-artifact@v2
-        with: 
-          name: code
-          path: .    
+      - name: Clone-down
+        uses: actions/checkout@v2
       - name: Start docker-compose
         run: docker-compose up -d
       - name: Test
