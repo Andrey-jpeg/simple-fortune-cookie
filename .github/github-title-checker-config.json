@@ -5,7 +5,7 @@
     },
     "CHECKS": {
       "prefixes": ["close ", "closes ", "closed ", "fix ", "fixes ", "fixed ", "resolve ", "resolves ", "resolved "],
-      "regexp": "docs\\(v[0-9]\\): "
+      "regexp": ""
     },
     "MESSAGES": {
       "success": "All OK",
