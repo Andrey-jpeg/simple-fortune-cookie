@@ -122,7 +122,7 @@ jobs:
       - name: Start docker-compose
         run: docker-compose up -d
       - name: Test
-        run: docker run --network container:backend appropriate/curl -s --retry 10 --retry-connrefused http://localhost:8080/  
+        run: docker run --network container:simple-fortune-cookie_frontend appropriate/curl -s --retry 10 --retry-connrefused http://localhost:8080/  
 
   Deploy-dev:
     runs-on: dev-self-hosted
