@@ -99,14 +99,7 @@ jobs:
   Docker-image-dev:
     runs-on: ubuntu-latest
     needs: [Build-backend, Test-frontend]
-    if: ${{ false }}
-    on:
-      push:
-        branches:
-          - dev
-      pull_request:
-        branches:
-          - dev    
+    if: ${{ false }} && github.ref == 'refs/heads/dev'  
     steps:
       - name: Download Repo
         uses: actions/download-artifact@v2
@@ -134,14 +127,7 @@ jobs:
   Docker-image-staging:
     runs-on: ubuntu-latest
     needs: [Build-backend, Test-frontend]
-    if: ${{ false }}
-    on:
-      push:
-        branches:
-          - staging
-      pull_request:
-        branches:
-          - staging
+    if: ${{ false }} && github.ref == 'refs/heads/staging'  
     steps:
       - name: Download Repo
         uses: actions/download-artifact@v2
@@ -169,14 +155,7 @@ jobs:
   Docker-image-main:
     runs-on: ubuntu-latest
     needs: [Build-backend, Test-frontend]
-    if: ${{ false }}
-    on:
-      push:
-        branches:
-          - main
-      pull_request:
-        branches:
-          - main
+    if: ${{ false }} && github.ref == 'refs/heads/main'  
     steps:
       - name: Download Repo
         uses: actions/download-artifact@v2
@@ -210,42 +189,21 @@ jobs:
   Deploy-latest:
     runs-on: ubuntu-latest
     needs: [Docker-image-dev]
-    if: ${{ false }}
-    on:
-      push:
-        branches:
-          - dev
-      pull_request:
-        branches:
-          - dev    
+    if: ${{ false }} && github.ref == 'refs/heads/dev'    
     steps:
       - name: Nothing yet
         run: echo "Hello latest" 
   Deploy-staging:
     runs-on: ubuntu-latest
     needs: [Docker-image-staging]
-    if: ${{ false }}
-    on:
-      push:
-        branches:
-          - staging
-      pull_request:
-        branches:
-          - staging    
+    if: ${{ false }} && github.ref == 'refs/heads/staging'    
     steps:
       - name: Nothing yet
         run: echo "Hello latest" 
   Deploy-main:
     runs-on: ubuntu-latest
     needs: [Docker-image-main]
-    if: ${{ false }}
-    on:
-      push:
-        branches:
-          - main
-      pull_request:
-        branches:
-          - main    
+    if: ${{ false }} && github.ref == 'refs/heads/main'
     steps:
       - name: Nothing yet
         run: echo "Hello latest"         
