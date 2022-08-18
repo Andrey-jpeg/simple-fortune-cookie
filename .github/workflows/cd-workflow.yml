@@ -47,10 +47,9 @@ jobs:
         working-directory: ./backend
       - name: Upload Backend Binary
         uses: actions/upload-artifact@v2
-        working-directory: ./backend
         with:
           name: backend-bin
-          path: ./backend
+          path: ./backend/backend
 
   Build-frontend:
     runs-on: ubuntu-latest
@@ -71,10 +70,9 @@ jobs:
         run: go build
       - name: Upload Frontend Binary
         uses: actions/upload-artifact@v2
-        working-directory: ./frontend
         with:
           name: frontend-bin
-          path: .
+          path: ./frontend
 
   Test-frontend:
     runs-on: ubuntu-latest
