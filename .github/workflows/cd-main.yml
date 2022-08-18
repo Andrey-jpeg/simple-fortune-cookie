@@ -108,9 +108,20 @@ jobs:
           push: true
           tags: ${{ secrets.DOCKER_USERNAME }}/frontend:prod  
 
-  Deploy-prod:
+  System-test-prod:
     runs-on: main-self-hosted
     needs: [Docker-image-prod]
+    steps:
+      - name: Clone-down
+        uses: actions/checkout@v2
+      - name: Start docker-compose
+        run: docker-compose up -d
+      - name: Test
+        run: docker run --network container:simple-fortune-cookie_frontend_1 appropriate/curl -s --retry 10 --retry-connrefused http://localhost:8080/  
+
+  Deploy-prod:
+    runs-on: main-self-hosted
+    needs: [System-test-prod]
     steps:
       - name: Nothing yet
         run: echo "Hello latest"         
