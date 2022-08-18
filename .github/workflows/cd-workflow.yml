@@ -98,7 +98,7 @@ jobs:
   Docker-image-dev:
     runs-on: ubuntu-latest
     needs: [Build-backend, Build-frontend, Test-frontend]
-    if: ${{ github.ref == 'refs/heads/f/cd-workflow' }}
+    if: ithub.ref == 'refs/heads/dev' || github.event.pull_request.base.ref == 'dev'
     steps:
       - name: Download Repo
         uses: actions/download-artifact@v2
