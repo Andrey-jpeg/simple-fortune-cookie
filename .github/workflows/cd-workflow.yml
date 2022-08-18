@@ -97,8 +97,8 @@ jobs:
 
   Docker-image-dev:
     runs-on: ubuntu-latest
-    needs: [Build-backend, Test-frontend]
-    if: ${{ false }} && github.ref == 'refs/heads/dev'  
+    needs: [Build-backend, Build-frontend, Test-frontend]
+    if: github.ref == 'refs/heads/dev'  
     steps:
       - name: Download Repo
         uses: actions/download-artifact@v2
@@ -125,8 +125,8 @@ jobs:
 
   Docker-image-staging:
     runs-on: ubuntu-latest
-    needs: [Build-backend, Test-frontend]
-    if: ${{ false }} && github.ref == 'refs/heads/staging'  
+    needs: [Build-backend, Build-frontend, Test-frontend]
+    if: github.ref == 'refs/heads/staging'  
     steps:
       - name: Download Repo
         uses: actions/download-artifact@v2
@@ -153,8 +153,8 @@ jobs:
 
   Docker-image-main:
     runs-on: ubuntu-latest
-    needs: [Build-backend, Test-frontend]
-    if: ${{ false }} && github.ref == 'refs/heads/main'  
+    needs: [Build-backend, Build-frontend, Test-frontend]
+    if: github.ref == 'refs/heads/main'  
     steps:
       - name: Download Repo
         uses: actions/download-artifact@v2
@@ -188,21 +188,21 @@ jobs:
   Deploy-latest:
     runs-on: ubuntu-latest
     needs: [Docker-image-dev]
-    if: ${{ false }} && github.ref == 'refs/heads/dev'    
+    if: github.ref == 'refs/heads/dev'    
     steps:
       - name: Nothing yet
         run: echo "Hello latest" 
   Deploy-staging:
     runs-on: ubuntu-latest
     needs: [Docker-image-staging]
-    if: ${{ false }} && github.ref == 'refs/heads/staging'    
+    if: github.ref == 'refs/heads/staging'    
     steps:
       - name: Nothing yet
         run: echo "Hello latest" 
   Deploy-main:
     runs-on: ubuntu-latest
     needs: [Docker-image-main]
-    if: ${{ false }} && github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/main'
     steps:
       - name: Nothing yet
         run: echo "Hello latest"         
