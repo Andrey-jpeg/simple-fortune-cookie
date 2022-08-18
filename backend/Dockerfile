@@ -6,4 +6,4 @@ COPY . .
 
 RUN go build
 
-CMD go run backend
+CMD REDIS_DNS="redis" go run backend
