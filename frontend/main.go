@@ -10,9 +10,10 @@ import (
     "time"
     "bytes"
     "math/rand"
+    "os"
 )
 
-var BACKEND_DNS=getEnv("BACKEND_DNS", "localhost")
+var BACKEND_DNS=os.Getenv("BACKEND_DNS")
 var BACKEND_PORT=getEnv("BACKEND_PORT", "9000")
 
 type fortune struct {
