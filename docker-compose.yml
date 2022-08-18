@@ -1,23 +1,32 @@
-version: '3'
+version: "3"
 services:
+  backend:
+    build: ./backend
+    ports:
+      - 9000:9000
+    networks:
+      - default
+    depends_on:
+      - "redis"
 
-    backend:
-        build: ./backend
-        ports:
-            - 9000:9000
-        networks:
-            - default
+  frontend:
+    depends_on:
+      - "backend"
+    build: ./frontend
+    ports:
+      - 8080:8080
+    networks:
+      - default
+    restart: always
 
-    frontend:
-        depends_on:
-            - "backend"
-        build: ./frontend
-        ports:
-            - 8080:8080
-        networks:
-            - default
-        restart: always
-
+  redis:
+    image: "redis:latest"
+    networks:
+      - default
+    ports:
+      - "6379:6379"
+    volumes:
+      - /docker/host/dir:/data
 
 networks:
   default:
