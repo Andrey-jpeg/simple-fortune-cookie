@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - f/**
+<<<<<<< HEAD
       - dev
       - main
       - staging
@@ -16,6 +17,11 @@ on:
 #  docker_username: ${{ secrets.DOCKER_USERNAME }}
 #  docker_password: ${{ secrets.DOCKER_PASSWORD }}
 #  GIT_COMMIT: ${{ github.sha }}
+=======
+  pull_request:
+    branches:
+      - f/**
+>>>>>>> origin/staging
 jobs:
   Clone-down:
     runs-on: ubuntu-latest
