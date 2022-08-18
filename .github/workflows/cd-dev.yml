@@ -98,13 +98,13 @@ jobs:
       - name: Build and push backend
         uses: docker/build-push-action@v3
         with:
-          context: .
+          context: ./backend
           push: true
           tags: ${{ secrets.DOCKER_USERNAME }}/backend:dev
       - name: Build and push frontend
         uses: docker/build-push-action@v3
         with:
-          context: .
+          context: ./frontend
           push: true
           tags: ${{ secrets.DOCKER_USERNAME }}/frontend:dev  
 
