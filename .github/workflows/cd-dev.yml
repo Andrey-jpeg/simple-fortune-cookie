@@ -8,7 +8,7 @@ on:
       - dev
 jobs:
   Clone-down:
-    runs-on: ubuntu-latest
+    runs-on: dev-self-hosted
     steps:
       - name: Clone-down
         uses: actions/checkout@v2   
@@ -18,7 +18,7 @@ jobs:
           name: code
           path: .
   Build-backend:
-    runs-on: ubuntu-latest
+    runs-on: dev-self-hosted
     needs: Clone-down
     steps:
       - name: Download Code
@@ -41,7 +41,7 @@ jobs:
           path: ./backend/backend
 
   Build-frontend:
-    runs-on: ubuntu-latest
+    runs-on: dev-self-hosted
     needs: Clone-down
     steps:
       - name: Download Code
@@ -64,7 +64,7 @@ jobs:
           path: ./frontend
 
   Test-frontend:
-    runs-on: ubuntu-latest
+    runs-on: dev-self-hosted
     needs: Clone-down
     steps:
       - name: Download Repo
@@ -82,7 +82,7 @@ jobs:
         run: go test
 
   Docker-image-dev:
-    runs-on: ubuntu-latest
+    runs-on: dev-self-hosted
     needs: [Build-backend, Build-frontend, Test-frontend]
     steps:
       - name: Download Repo
@@ -109,7 +109,7 @@ jobs:
           tags: ${{ secrets.DOCKER_USERNAME }}/frontend:dev  
 
   Deploy-latest:
-    runs-on: ubuntu-latest
+    runs-on: dev-self-hosted
     needs: [Docker-image-dev]
     steps:
       - name: Nothing yet
