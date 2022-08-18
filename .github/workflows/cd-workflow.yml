@@ -1,7 +1,7 @@
 name: Continuous Deployment Dev
 on:
   workflow_run:
-    workflows: ["Backend CI","Frontend CI"]
+    workflows: ["Backend CI"]
     types:
       - completed
     branches:
