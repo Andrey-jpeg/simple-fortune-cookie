@@ -5,13 +5,14 @@ import (
 	"github.com/gomodule/redigo/redis"
 	"log"
 	"sync"
+	"os"
 )
 
 var dbLink redis.Conn
 var usingRedis = false
 
 func init() {
-	conn, err := redis.Dial("tcp", fmt.Sprintf("%s:6379", getEnv("REDIS_DNS", "localhost")))
+	conn, err := redis.Dial("tcp", fmt.Sprintf("%s:6379", os.Getenv("REDIS_DNS")))
 	if err != nil {
 		log.Println("redis", err)
 	} else {
