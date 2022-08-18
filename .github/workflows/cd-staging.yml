@@ -110,7 +110,7 @@ jobs:
 
 
   Deploy-staging:
-    runs-on: ubuntu-latest
+    runs-on: staging-self-hosted
     needs: [Docker-image-staging]
     steps:
       - name: Nothing yet
