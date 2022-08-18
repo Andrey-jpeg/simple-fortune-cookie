@@ -112,9 +112,23 @@ jobs:
           push: true
           tags: ${{ secrets.DOCKER_USERNAME }}/frontend:dev  
 
-  Deploy-dev:
+  System-test-dev:
     runs-on: dev-self-hosted
     needs: [Docker-image-dev]
+    with:
+      - name: Download Repo
+        uses: actions/download-artifact@v2
+        with: 
+          name: code
+          path: .    
+      - name: Start docker-compose
+        run: docker-compose up -d
+      - name: Test
+        run: docker run --network container:backend appropriate/curl -s --retry 10 --retry-connrefused http://localhost:8080/  
+              
+  Deploy-dev:
+    runs-on: dev-self-hosted
+    needs: [System-test-dev]
     steps:
       - name: Nothing yet
         run: echo "Hello latest" 
