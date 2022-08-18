@@ -2,15 +2,8 @@ FROM golang:1.16-alpine
 
 WORKDIR /app
 
-COPY go.mod ./
-COPY go.sum ./
-RUN go mod tidy
-RUN go mod download
+COPY . .
 
-COPY *.go ./
+RUN go build
 
-RUN go build -o /docker-gs-ping
-
-EXPOSE 8080
-
-CMD [ "/docker-gs-ping" ]
+CMD BACKEND_DNS="backend" go run frontend
